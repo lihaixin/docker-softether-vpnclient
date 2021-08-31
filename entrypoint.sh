@@ -37,6 +37,9 @@ case ${TAP_IPADDR} in
 esac
 
 sleep 3
+ip route add $VPN_SERVER/24 via 172.17.0.1
+ip route delete default via 172.17.0.1
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
 tail -F /usr/local/vpnclient/client_log/*.log &
 
 set +e
