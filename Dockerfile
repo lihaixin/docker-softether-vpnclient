@@ -1,4 +1,5 @@
-FROM debian:buster
+#FROM debian:buster
+FROM ubuntu:16.04
 MAINTAINER Haixin Lee <docker@lihaixin.name>
 
 ENV VERSION=4.38-9760-rtm
