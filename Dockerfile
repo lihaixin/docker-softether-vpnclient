@@ -1,20 +1,22 @@
-FROM ubuntu:16.04
+FROM debian:buster
 MAINTAINER Haixin Lee <docker@lihaixin.name>
 
-ENV VERSION v4.24-9651-beta-2017.10.23
+ENV VERSION=4.38-9760-rtm
 WORKDIR /usr/local/vpnclient
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
-    apt-get -y -q install iptables gcc make wget dhcpcd5 iproute2 && \
+    apt-get -y -q install iptables gcc make wget dhcpcd5 iproute2 curl iputils-ping mtr procps figlet && \
     apt-get clean && \
     rm -rf /var/cache/apt/* /var/lib/apt/lists/* && \
-    wget http://www.softether-download.com/files/softether/${VERSION}-tree/Linux/SoftEther_VPN_Client/64bit_-_Intel_x64_or_AMD64/softether-vpnclient-${VERSION}-linux-x64-64bit.tar.gz -O /tmp/softether-vpnclient.tar.gz &&\
+    wget https://github.com/SoftEtherVPN/SoftEtherVPN_Stable/releases/download/v${VERSION}/softether-vpnclient-v${VERSION}-2021.08.17-linux-x64-64bit.tar.gz -O /tmp/softether-client.tar.gz &&\
     tar -xzvf /tmp/softether-vpnclient.tar.gz -C /usr/local/ && \
     rm /tmp/softether-vpnclient.tar.gz && \
-    make i_read_and_agree_the_license_agreement && \
-    apt-get purge -y -q --auto-remove gcc make wget
-
+    make  && \
+    apt-get purge -y -q --auto-remove gcc make wget && \
+    update-alternatives --set iptables /usr/sbin/iptables-legacy && \
+    update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy 
+ADD ./.bashrc /root/.bashrc
 ADD entrypoint.sh /
 RUN chmod 755 /entrypoint.sh
 
