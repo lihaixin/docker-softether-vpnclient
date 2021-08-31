@@ -39,7 +39,7 @@ esac
 sleep 3
 tail -F /usr/local/vpnclient/client_log/*.log &
 sleep 1
-ip route add $VPN_SERVER/24 via $DEFAULT_ROUTE_IP
+ip route add $VPN_SERVER/32 via $DEFAULT_ROUTE_IP
 ip route delete default via $DEFAULT_ROUTE_IP
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 
