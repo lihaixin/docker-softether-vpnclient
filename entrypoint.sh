@@ -1,5 +1,5 @@
 #!/bin/sh
-
+DEFAULT_ROUTE_IP=`ip route | grep default |awk '{ print $3}'`
 VIRTUAL_HUB=${VIRTUAL_HUB:-"DEFAULT"}
 VPN_SERVER=${VPN_SERVER:-"localhost"}
 VPN_PORT=${VPN_PORT:-"5555"}
@@ -37,12 +37,12 @@ case ${TAP_IPADDR} in
 esac
 
 sleep 3
-ip route add $VPN_SERVER/24 via 172.17.0.1
-ip route delete default via 172.17.0.1
-echo "nameserver 8.8.8.8" > /etc/resolv.conf
-
-(time curl -o /dev/null http://cachefly.cachefly.net/10mb.test)
 tail -F /usr/local/vpnclient/client_log/*.log &
+sleep 1
+ip route add $VPN_SERVER/24 via $DEFAULT_ROUTE_IP
+ip route delete default via $DEFAULT_ROUTE_IP
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+(time curl -o /dev/null http://cachefly.cachefly.net/10mb.test)
 
 set +e
 while pgrep vpnclient > /dev/null; do sleep 1; done
