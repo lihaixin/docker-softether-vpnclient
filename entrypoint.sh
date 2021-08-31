@@ -1,5 +1,6 @@
 #!/bin/sh
 DEFAULT_ROUTE_IP=`ip route | grep default |awk '{ print $3}'`
+DEFAULT_ROUTE_IP=${DEFAULT_ROUTE_IP:-"172.17.0.1"}
 VIRTUAL_HUB=${VIRTUAL_HUB:-"DEFAULT"}
 VPN_SERVER=${VPN_SERVER:-"localhost"}
 VPN_PORT=${VPN_PORT:-"5555"}
