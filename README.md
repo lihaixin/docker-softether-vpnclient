@@ -15,6 +15,8 @@ docker run -d --name=softether-vpnclient \
 -e VPN_PORT=<Softether VPN port> \
 -e ACCOUNT_USER=<Registered username> \
 -e ACCOUNT_PASS=<Registered password> \
+-e TAP_IPADDR=dhcp \
+-e VIRTUAL_HUB=VPNGATE \
 lihaixin/docker-softether-vpnclient
 ```
 
