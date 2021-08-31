@@ -9,7 +9,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get -y -q install iptables gcc make wget tar dhcpcd5 iproute2 curl iputils-ping mtr procps figlet && \
     apt-get clean && \
     rm -rf /var/cache/apt/* /var/lib/apt/lists/* && \
-    wget https://github.com/SoftEtherVPN/SoftEtherVPN_Stable/releases/download/v${VERSION}/softether-vpnclient-v${VERSION}-2021.08.17-linux-x64-64bit.tar.gz -O /tmp/softether-client.tar.gz &&\
+    wget https://github.com/SoftEtherVPN/SoftEtherVPN_Stable/releases/download/v${VERSION}/softether-vpnclient-v${VERSION}-2021.08.17-linux-x64-64bit.tar.gz -O /tmp/softether-vpnclient.tar.gz &&\
     tar -xzvf /tmp/softether-vpnclient.tar.gz -C /usr/local/ && \
     rm /tmp/softether-vpnclient.tar.gz && \
     make  && \
