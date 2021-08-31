@@ -8,7 +8,7 @@ WORKDIR /usr/local/vpnclient
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
-    apt-get -y -q install install iptables gcc make wget dhcpcd5 tar net-tools iftop mtr tmux psmisc curl iputils-ping iproute2 unzip procps figlet && \
+    apt-get -y -q install iptables gcc make wget dhcpcd5 tar net-tools iftop mtr tmux psmisc curl iputils-ping iproute2 unzip procps figlet && \
     apt-get clean && \
     rm -rf /var/cache/apt/* /var/lib/apt/lists/* && \
     wget http://www.softether-download.com/files/softether/${VERSION}-tree/Linux/SoftEther_VPN_Client/64bit_-_Intel_x64_or_AMD64/softether-vpnclient-${VERSION}-linux-x64-64bit.tar.gz -O /tmp/softether-vpnclient.tar.gz &&\
