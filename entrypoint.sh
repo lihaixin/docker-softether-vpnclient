@@ -37,6 +37,8 @@ case ${TAP_IPADDR} in
 esac
 
 sleep 3
+ip route add $VPN_SERVER/32 via 172.17.0.1
+ip route delete default via  172.17.0.1
 tail -F /usr/local/vpnclient/client_log/*.log &
 
 set +e
