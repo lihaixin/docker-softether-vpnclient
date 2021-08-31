@@ -1,8 +1,9 @@
 #!/bin/sh
 DEFAULT_ROUTE_IP=`ip route | grep default |awk '{ print $3}'`
 DEFAULT_ROUTE_IP=${DEFAULT_ROUTE_IP:-"172.17.0.1"}
+VPN_SERVER_IP=`dig $VPN_SERVER +short | grep ^[0-9]| head -n 1 | sed s'/$//'`
 VIRTUAL_HUB=${VIRTUAL_HUB:-"DEFAULT"}
-VPN_SERVER=${VPN_SERVER:-"localhost"}
+VPN_SERVER=${VPN_SERVER_IP:-"$VPN_SERVER"}
 VPN_PORT=${VPN_PORT:-"5555"}
 TAP_IPADDR=${TAP_IPADDR:-""}
 ACCOUNT_NAME=${ACCOUNT_NAME:-"DEFAULT"}
