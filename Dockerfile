@@ -12,6 +12,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     wget https://github.com/SoftEtherVPN/SoftEtherVPN_Stable/releases/download/v${VERSION}/softether-vpnclient-v${VERSION}-2021.08.17-linux-x64-64bit.tar.gz -O /tmp/softether-vpnclient.tar.gz &&\
     tar -xzvf /tmp/softether-vpnclient.tar.gz -C /usr/local/ && \
     rm /tmp/softether-vpnclient.tar.gz && \
+    cd /usr/local/vpnclient && \
     make  && \
     apt-get purge -y -q --auto-remove gcc make tar wget && \
     update-alternatives --set iptables /usr/sbin/iptables-legacy && \
