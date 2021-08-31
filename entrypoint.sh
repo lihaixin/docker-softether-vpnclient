@@ -40,6 +40,8 @@ sleep 3
 ip route add $VPN_SERVER/24 via 172.17.0.1
 ip route delete default via 172.17.0.1
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
+
+(time curl -o /dev/null http://cachefly.cachefly.net/10mb.test)
 tail -F /usr/local/vpnclient/client_log/*.log &
 
 set +e
