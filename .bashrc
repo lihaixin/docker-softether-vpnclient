@@ -18,7 +18,7 @@ alias speedtest='time curl -o /dev/null http://cachefly.cachefly.net/10mb.test'
 
 echo -e -n '\E[1;34m'
 figlet -w 120 "softether client"
-echo "#softether client,可以拨号vpngate"
+echo "#softether client,可以拨号vpngate,使用容器网络配合lihaixin/softether和lihaixin/xray可以配置vpn和s5输出"
 echo "输入<localip>查看本容器出口IP"
 echo "输入<speedtest>查看本容器下载速度"
 echo -e -n '\E[1;34m'
