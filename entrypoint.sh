@@ -22,6 +22,7 @@ $VPNCMD NicCreate $VIRTUAL_HUB
 $VPNCMD NicEnable $VIRTUAL_HUB
 $VPNCMD AccountCreate $ACCOUNT_NAME /SERVER:$VPN_SERVER:$VPN_PORT /HUB:$VIRTUAL_HUB /USERNAME:$ACCOUNT_USER /NICNAME:$VIRTUAL_HUB
 $VPNCMD AccountPasswordSet $ACCOUNT_NAME /PASSWORD:$ACCOUNT_PASS /TYPE:$ACCOUNT_PASS_TYPE
+$VPNCMD KeepEnable
 $VPNCMD AccountConnect $ACCOUNT_NAME
 
 sleep 3
@@ -29,7 +30,7 @@ sleep 3
 TAP_DEVICE=$(cd /sys/class/net; echo vpn_*)
 case ${TAP_IPADDR} in
 	dhcp)
-		dhcpcd -4 $TAP_DEVICE
+		dhcpcd -4 -b $TAP_DEVICE
 		;;
 	none)
 		;;
